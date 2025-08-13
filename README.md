@@ -1,5 +1,3 @@
-# DSA-ASSIGNMENT
-This repo consists of my DSA assignments 
 #include <stdio.h>
 int main(){
 int arr[100];
@@ -35,4 +33,3 @@ for (i = 0; i < k; i++) {
 return 0;
 }
 }
-
