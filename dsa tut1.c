@@ -203,37 +203,7 @@ int main() {
   return 0;
 }
 
-// c.
-#include <stdio.h>
 
-int main() {
-  int original[10][10], transpose[10][10];
-  int rowCount, colCount, i, j;
-
-  printf("Enter the number of rows and columns: ");
-  scanf("%d %d", &rowCount, &colCount);
-
-  printf("Provide the matrix elements:\n");
-  for (i = 0; i < rowCount; i++) {
-    for (j = 0; j < colCount; j++) {
-      scanf("%d", &original[i][j]);
-    }
-  }
-  for (i = 0; i < rowCount; i++) {
-    for (j = 0; j < colCount; j++) {
-      transpose[j][i] = original[i][j];
-    }
-  }
-  printf("Transposed matrix:\n");
-  for (j = 0; j < colCount; j++) {
-    for (i = 0; i < rowCount; i++) {
-      printf("%d ", transpose[j][i]);
-    }
-    printf("\n");
-  }
-
-  return 0;
-}
 
 // 5)
 // -----------------------------------------------------------------------------------------------
@@ -272,4 +242,5 @@ int main() {
   }
 
   return 0;
+
 }
