@@ -1,0 +1,214 @@
+// all answers are written in c
+// Aksh Kaushik (1024030660)
+
+/*
+1) Implement the Binary search algorithm regarded as a fast search algorithm
+with run-time complexity of Ο(log n) in comparison to the Linear Search.
+*/
+#include <stdio.h>
+
+int main() {
+  int arr[100];
+  int n = 0;
+  printf("Enter size of array: ");
+  scanf("%d", &n);
+  printf("Enter elements of array: \n");
+  for (int i = 0; i < n; ++i) {
+    scanf("%d", &arr[i]);
+  }
+  int key;
+  printf("Enter element to search: ");
+  scanf("%d", &key);
+
+  printf("[");
+  for (int i = 0; i < n; i++)
+    printf("%d ", arr[i]);
+  printf("]\n");
+
+  printf("Sorting the array using Bubble Sort...\n");
+
+  // Bubble Sort
+  for (int i = 0; i < n - 1; ++i) {
+    for (int j = 0; j < n - i - 1; ++j) {
+      if (arr[j] > arr[j + 1]) {
+        int temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+
+  printf("[");
+  for (int i = 0; i < n; i++)
+    printf("%d ", arr[i]);
+  printf("]\n");
+
+  int left = 0, right = n - 1, mid;
+  int found = -1;
+
+  while (left <= right) {
+    mid = (left + right) / 2;
+    if (arr[mid] == key) {
+      found = mid;
+      break;
+    } else if (arr[mid] < key) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  if (found > 0) {
+    printf("Element found at index: %d\n", found);
+  } else {
+    printf("Element not found in the array.\n");
+  }
+
+  return 0;
+}
+
+/*
+2) Bubble Sort is the simplest sorting algorithm that works by repeatedly
+swapping the adjacent elements if they are in wrong order. Code the Bubble
+sort with the following elements: 64 34 25 12 22 11 90
+*/
+#include <stdio.h>
+
+int main() {
+  int arr[] = {64, 34, 25, 12, 22, 11, 90};
+  int n = sizeof(arr) / sizeof(arr[0]);
+  printf("[");
+  for (int i = 0; i < n; i++)
+    printf("%d ", arr[i]);
+  printf("]\n");
+
+  // Bubble Sort
+  for (int i = 0; i < n - 1; ++i) {
+    for (int j = 0; j < n - i - 1; ++j) {
+      if (arr[j] > arr[j + 1]) {
+        int temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+
+  printf("[");
+  for (int i = 0; i < n; i++)
+    printf("%d ", arr[i]);
+  printf("]\n");
+
+  return 0;
+}
+
+/*
+3) Design the Logic to Find a Missing Number in a Sorted Array.
+Assumptions: The array contains n-1 elements in the range of 1 to n.
+*/
+#include <stdio.h>
+
+int main() {
+  int arr[] = {1, 2, 3, 4, 6, 7, 8};
+  int len = (sizeof(arr) / sizeof(*arr));
+  int n = len + 1; // Since one number is missing
+  int total = (n * (n + 1)) / 2;
+  int sum = 0;
+  for (int i = 0; i < len; ++i) {
+    sum += arr[i];
+  }
+
+  int missingNumber = total - sum;
+  printf("The missing number is: %d\n", missingNumber);
+  return 0;
+}
+
+/*
+4) String Related Programs
+(a) Write a program to concatenate one string to another string.
+(b) Write a program to reverse a string.
+(c) Write a program to delete all the vowels from the string.
+(d) Write a program to sort the strings in alphabetical order.
+(e) Write a program to convert a character from uppercase to lowercase.
+*/
+#include <stdio.h>
+#include <string.h>
+
+void concat(char *str1, char *str2) {
+  while (*str1) str1++;
+  while ((*str1++ = *str2++));
+}
+
+void reverse(char *str) {
+  int len = strlen(str);
+  int mid = len / 2;
+  for (int i = 0; i < mid; ++i) {
+    char temp = str[i];
+    str[i] = str[len - i - 1];
+    str[len - i - 1] = temp;
+  }
+}
+
+void deleteVowels(char* str) {
+  char *src = str;
+  char *dest = str;
+  while (*src) {
+    switch (*src) {
+      case 'a': case 'e': case 'i': case 'o': case 'u':
+      case 'A': case 'E': case 'I': case 'O': case 'U':
+        src++;
+        break;
+      default:
+        *dest++ = *src++;
+        break;
+    }
+  }
+  *dest = '\0';
+}
+
+void sortAlpha(char* str) {
+  int len = strlen(str);
+  for (int i = 0; i < len - 1; ++i) {
+    for (int j = 0; j < len - i - 1; ++j) {
+      if (str[j] > str[j+1]) {
+        char temp = str[j];
+        str[j] = str[j+1];
+        str[j+1] = temp;
+      }
+    }
+  }
+}
+
+void toLowerCase(char* str) {
+  while(*str) {
+    if ('A' <= *str && *str <= 'Z') {
+      *str += 32;
+    }
+    str++;
+  }
+}
+
+int main() {
+  char str1[100] = "Hello, ";
+  char str2[100] = "World!";
+
+  printf("Original String 1: %s\n", str1);
+  printf("Original String 2: %s\n", str2);
+
+  concat(str1, str2);
+  printf("Concatenated String (String 1): %s\n", str1);
+
+  reverse(str1);
+  printf("Reversed String: %s\n", str1);
+
+  deleteVowels(str1);
+  printf("String after deleting vowels: %s\n", str1);
+
+  sortAlpha(str1);
+  printf("Sorted String in alphabetical order: %s\n", str1);
+
+  char str3[100] = "PROGRAMMING";
+  toLowerCase(str3);
+  printf("Lowercase String: %s\n", str3);
+
+  return 0;
+}
