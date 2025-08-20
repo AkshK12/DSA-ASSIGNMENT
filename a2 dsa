@@ -126,3 +126,53 @@ int main() {
 
   return 0;
 }
+
+//Ques 4
+
+#include<iostream>
+#include<string>
+#include<cstring>
+using namespace std;
+
+void concat(char str1[], char str2[]){
+    
+   int l1= strlen(str1);
+   int l2= strlen(str2);
+   for(int i=0;i<l2;i++){
+    str1[l1]=str2[i];
+    l1++;
+   }
+   str1[l1]='\0';
+}
+
+void reverse(char str1[]){
+
+  int n=strlen(str1);
+    
+    for(int i=0;i<n/2;i++){
+           int temp=str1[n-i-1];
+            str1[n-i-1]=str1[i];
+            str1[i]=temp;
+}
+}
+
+void sortstr(char str[]) {
+  int l = strlen(str);
+  for (int i = 0; i < l - 1; i++) {
+    for (int j = 0; j < l - i - 1; j++) {
+      if (str[j] > str[j+1]) {
+        char temp = str[j];
+        str[j] = str[j+1];
+        str[j+1] = temp;
+      }
+    }
+  }
+}
+
+
+int main(){
+ char str1[100]="zelo ";
+ char str2[100]="World ";
+ sortstr(str1);
+ cout<<str1;
+}
